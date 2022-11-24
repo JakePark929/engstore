@@ -1,0 +1,35 @@
+.signupField {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.signupField > div{
+    margin: 6px;
+}
+
+.signup_inputDate {
+    display: flex;
+    flex-direction: row;
+}
+
+.signup_inputDate > div {
+    margin: 30px 8px 18px 8px;
+}
+
+.signup_inputGender {
+    display: flex;
+    flex-direction: row;
+}
+
+.signup_genderRadio {
+    margin-left: 12px;
+    margin-right: 12px;
+}
+
+#demo-row-radio-buttons-group-label {
+    margin-top: 9px;
+    margin-right: 25px;
+    font-size: 18px;
+}
