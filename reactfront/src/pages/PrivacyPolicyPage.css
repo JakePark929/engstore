@@ -1,0 +1,63 @@
+.policyContainer {
+}
+
+.signupPaper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 120vh;
+    height: 100vh;
+}
+
+.signup_titleField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.arrowBackIcon {
+    cursor: pointer;
+}
+
+.signupTitle {
+    margin: 30px 30px 20px 30px;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.signupLabel {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 12px;
+}
+
+.signupLabel > div {
+    margin-top: 10px;
+}
+
+.signup_mainLabel {
+
+}
+
+.signup_borderLine {
+    border-bottom : 1px solid #8F8F8F;
+    width: 2vh;
+    height: 1px;
+}
+
+.signup_subLabel {
+    color: #959595;
+}
+
+.signupPolicy {
+    margin-top: 30px;
+}
+
+.signupCheck {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
