@@ -1,29 +1,33 @@
 .signupField {
     margin-top: 10px;
     display: flex;
-    align-items: center;
     flex-direction: column;
 }
 
-.signupField > div{
-    margin: 6px;
+.signupField > form > div{
+    margin: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .signup_inputDate {
     display: flex;
+    justify-content: center;
     flex-direction: row;
 }
 
 .signup_inputDate > div {
-    margin: 30px 8px 18px 8px;
+    margin: 32px 8px 20px 8px;
 }
 
-.signup_inputGender {
+#signup_inputGender {
     display: flex;
+    justify-content: center;
     flex-direction: row;
 }
 
-.signup_genderRadio {
+#signup_genderRadio {
     margin-left: 12px;
     margin-right: 12px;
 }
@@ -32,4 +36,9 @@
     margin-top: 9px;
     margin-right: 25px;
     font-size: 18px;
+}
+
+.sign_buttonField {
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
