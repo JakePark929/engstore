@@ -30,11 +30,11 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 12px;
+    margin-top: 1vh;
 }
 
 .signupLabel > div {
-    margin-top: 10px;
+    margin-top: 2vh;
 }
 
 .signup_mainLabel {
@@ -52,12 +52,21 @@
 }
 
 .signupPolicy {
-    margin-top: 30px;
+    margin-top: 5vh;
 }
 
 .signupCheck {
-    margin-top: 10px;
+    margin-top: 3vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     flex-direction: row;
+}
+
+.signupCheck > div {
+    margin: 0px 1px 0px 1px;
+}
+
+.signupCheck > div > p {
+    font-size: 17px;
 }

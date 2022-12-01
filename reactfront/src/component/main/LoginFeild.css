@@ -3,17 +3,18 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin: 5px 10px 5px 40px;
+    margin: 8vh 6vh 8vh 7vh;
+    width: 38vh;
 }
 
-.login_inputField {
-
+.login_inputField > div {
+    margin-bottom: 10px;
 }
 
 .login_linkField {
     display: flex;
+    float: right;
     flex-direction: row;
-    margin: 8px 0px 0px 140px;
 }
 
 .login_findLink {
@@ -30,11 +31,12 @@
 }
 
 .login_buttonField {
-    margin: 20px 0px 0px 0px;
+    margin-top: 5vh;
+    margin-bottom: 6vh;
 }
 
 .login_buttonField > button {
-    margin: 10px;
+    margin-top: 3vh;
     font-size: 17px;
     font-weight: 1000;
     letter-spacing: 5px;

@@ -1,0 +1,12 @@
+.findField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 8vh 6vh 8vh 7vh;
+    width: 38vh;
+}
+
+.find_inputField > div {
+    margin-bottom: 10px;
+}

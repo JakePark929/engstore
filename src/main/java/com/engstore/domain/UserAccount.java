@@ -12,13 +12,14 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Getter
-@ToString
+@ToString // TODO: lombok 위험
 @Entity
 public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    // TODO: 세터 지양
     @Setter private String email;
     @Setter private String password;
     @Setter private String name;
@@ -32,4 +33,8 @@ public class UserAccount {
 
     @CreationTimestamp
     private Timestamp createDate;
+
+    public void setRoleUser() {
+        this.role="ROLE_USER";
+    }
 }

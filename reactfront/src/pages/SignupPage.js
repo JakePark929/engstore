@@ -142,16 +142,10 @@ const SignupPage = () => {
                                         sx={{width: 100}}
                                         onChange={handleChange1}
                                     >
-                                        <MenuItem value={'1986'}>1986</MenuItem>
-                                        <MenuItem value={'1987'}>1987</MenuItem>
-                                        <MenuItem value={'1988'}>1988</MenuItem>
-                                        <MenuItem value={'1989'}>1989</MenuItem>
-                                        <MenuItem value={'1990'}>1990</MenuItem>
-                                        <MenuItem value={'1991'}>1991</MenuItem>
-                                        <MenuItem value={'1992'}>1992</MenuItem>
-                                        <MenuItem value={'1993'}>1993</MenuItem>
-                                        <MenuItem value={'1994'}>1994</MenuItem>
-                                        <MenuItem value={'1995'}>1995</MenuItem>
+                                        {
+                                            Array.from({length: 61}, (v, i) => i + 1950)
+                                                .map(i => <MenuItem key={'year'+i} value={i}>{i}</MenuItem>)
+                                        }
                                     </Select>
                                 </FormControl>
                             </div>
@@ -167,18 +161,10 @@ const SignupPage = () => {
                                         sx={{width: 80}}
                                         onChange={handleChange2}
                                     >
-                                        <MenuItem value={'01'}>01</MenuItem>
-                                        <MenuItem value={'02'}>02</MenuItem>
-                                        <MenuItem value={'03'}>03</MenuItem>
-                                        <MenuItem value={'04'}>04</MenuItem>
-                                        <MenuItem value={'05'}>05</MenuItem>
-                                        <MenuItem value={'06'}>06</MenuItem>
-                                        <MenuItem value={'07'}>07</MenuItem>
-                                        <MenuItem value={'08'}>08</MenuItem>
-                                        <MenuItem value={'09'}>09</MenuItem>
-                                        <MenuItem value={'10'}>10</MenuItem>
-                                        <MenuItem value={'11'}>11</MenuItem>
-                                        <MenuItem value={'12'}>12</MenuItem>
+                                        {
+                                            Array.from({length: 12}, (v, i) => i + 1)
+                                                .map(i => <MenuItem key={'month'+i} value={i}>{i}</MenuItem>)
+                                        }
                                     </Select>
                                 </FormControl>
                             </div>
@@ -194,16 +180,10 @@ const SignupPage = () => {
                                         sx={{width: 80}}
                                         onChange={handleChange3}
                                     >
-                                        <MenuItem value={'01'}>01</MenuItem>
-                                        <MenuItem value={'02'}>02</MenuItem>
-                                        <MenuItem value={'03'}>03</MenuItem>
-                                        <MenuItem value={'04'}>04</MenuItem>
-                                        <MenuItem value={'05'}>05</MenuItem>
-                                        <MenuItem value={'06'}>06</MenuItem>
-                                        <MenuItem value={'07'}>07</MenuItem>
-                                        <MenuItem value={'08'}>08</MenuItem>
-                                        <MenuItem value={'09'}>09</MenuItem>
-                                        <MenuItem value={'10'}>10</MenuItem>
+                                        {
+                                            Array.from({length: 31}, (v, i) => i + 1)
+                                                .map(i => <MenuItem key={'day'+i} value={i}>{i}</MenuItem>)
+                                        }
                                     </Select>
                                 </FormControl>
                             </div>
