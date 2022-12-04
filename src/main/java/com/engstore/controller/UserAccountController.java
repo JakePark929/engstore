@@ -27,7 +27,7 @@ public class UserAccountController {
         return new ResponseEntity<>(userAccountService.insertUserAccount(userAccount), HttpStatus.CREATED);
     }
 
-    @GetMapping("/module-main")
+    @GetMapping("/module/main")
     public String moduleMain() {
         return "/index.html";
     }

@@ -40,7 +40,7 @@ const ModuleMainPage = () => {
                         <Button variant="contained"
                                 sx={{width: '32vh', height:45, borderRadius: 30,
                                     fontSize: '2vh', fontWeight: 1000}}
-                                onClick={() => navigate("/policy")}
+                                onClick={() => navigate("/module/dwg")}
                         >
                             이동하기&nbsp;&nbsp;>
                         </Button>
@@ -77,7 +77,7 @@ const ModuleMainPage = () => {
                         <Button variant="contained"
                                 sx={{width: '32vh', height:45, borderRadius: 30,
                                     fontSize: '2vh', fontWeight: 1000}}
-                                onClick={() => navigate("/policy")}
+                                onClick={() => navigate("/module/sheet")}
                         >
                             이동하기&nbsp;&nbsp;>
                         </Button>
@@ -114,7 +114,7 @@ const ModuleMainPage = () => {
                         <Button variant="contained"
                                 sx={{width: '32vh', height:45, borderRadius: 30,
                                     fontSize: '2vh', fontWeight: 1000}}
-                                onClick={() => navigate("/policy")}
+                                onClick={() => navigate("/module/doc")}
                         >
                             이동하기&nbsp;&nbsp;>
                         </Button>

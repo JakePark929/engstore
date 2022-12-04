@@ -14,13 +14,12 @@
 .mainTitle {
     margin: 3vh 3vh 2vh 3vh;
     font-size: 24px;
-    cursor: pointer;
 }
 
 .mainField {
     display: flex;
-    align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .imgField {
@@ -36,6 +35,8 @@
 }
 
 .borderLine {
+    position: relative;
+    top: 2vh;
     border-right : 1px solid #8F8F8F;
     width: 1px;
     height: 52vh;

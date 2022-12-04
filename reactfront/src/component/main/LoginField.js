@@ -33,7 +33,8 @@ const LoginField = () => {
         })
             .then(res => {
                 console.log(1, res)
-                const url = res.url.substring(res.url.lastIndexOf("/"))
+                const form = res.url.substring(res.url.lastIndexOf(":"));
+                const url = form.slice(form.indexOf("/"));
                 if (res.status === 200) {
                     navigate(url);
                 } else {
@@ -56,11 +57,11 @@ const LoginField = () => {
                     </div>
                 </div>
                 <div className="login_linkField">
-                    <Link to={"/find-email"} style={{textDecoration: 'none'}}>
+                    <Link to={"/find-info"} state={{fieldValue: 0}} style={{textDecoration: 'none'}}>
                         <p className="login_findLink">이메일찾기</p>
                     </Link>
                     <p className="login_findNoLink">/</p>
-                    <Link to={"/find-pw"} style={{textDecoration: 'none'}}>
+                    <Link to={"/find-info"} state={{fieldValue: 1}} style={{textDecoration: 'none'}}>
                         <p className="login_findLink">비밀번호찾기</p>
                     </Link>
                 </div>

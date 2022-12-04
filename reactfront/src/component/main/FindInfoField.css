@@ -1,0 +1,22 @@
+.findInfoField {
+    margin: 3vh 6vh 8vh 7vh;
+    width: 38vh;
+}
+
+.find_infoBox {
+}
+
+.find_inputField {
+    heigt: 50vh
+}
+
+.find_buttonField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    float: bottom;
+
+    margin-top: 4vh;
+}
