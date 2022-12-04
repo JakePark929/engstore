@@ -1,6 +1,6 @@
 import React from 'react';
 import './MainPage.css';
-import {Paper} from "@mui/material";
+import {Button, Paper} from "@mui/material";
 import LoginField from "../component/main/LoginField";
 import {useNavigate} from "react-router-dom";
 

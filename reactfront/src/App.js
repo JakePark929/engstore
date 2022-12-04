@@ -3,8 +3,9 @@ import {Route, Routes} from "react-router-dom";
 import Footer from "./component/Footer";
 import MainPage from "./pages/MainPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
-import SignUpPage from "./pages/SignUpPage";
+import SignupPage from "./pages/SignupPage";
 import SignupCompletePage from "./pages/SignupCompletePage";
+import ModuleMainPage from "./pages/ModuleMainPage";
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
               <Routes>
                   <Route path="/" exact={true} element={<MainPage/>}/>
                   <Route path="/policy" exact={true} element={<PrivacyPolicyPage/>}/>
-                  <Route path="/signup" exact={true} element={<SignUpPage/>}/>
+                  <Route path="/signup" exact={true} element={<SignupPage/>}/>
                   <Route path="/signup-complete" exact={true} element={<SignupCompletePage/>}/>
+                  <Route path="/module-main" exact={true} element={<ModuleMainPage/>}/>
               </Routes>
           </div>
           <Footer/>
