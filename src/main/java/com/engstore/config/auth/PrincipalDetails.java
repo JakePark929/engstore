@@ -14,7 +14,7 @@ public class PrincipalDetails implements UserDetails {
 
     public PrincipalDetails(UserAccount userAccount) {
         this.userAccount = userAccount;
-        System.out.println("userAccount: " + userAccount);
+        System.out.println("userAccount: " + userAccount); // TODO: log.debug
     }
 
     @Override

@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginFeild.css';
 import {Box, Button, FormLabel, TextField} from "@mui/material";
-import {Form, useNavigate} from "react-router-dom";
+import {Form, Link, useNavigate} from "react-router-dom";
 
 const LoginField = () => {
     const navigate = useNavigate();
@@ -33,7 +33,8 @@ const LoginField = () => {
         })
             .then(res => {
                 console.log(1, res)
-                const url = res.url.substring(res.url.lastIndexOf("/"))
+                const form = res.url.substring(res.url.lastIndexOf(":"));
+                const url = form.slice(form.indexOf("/"));
                 if (res.status === 200) {
                     navigate(url);
                 } else {
@@ -46,19 +47,43 @@ const LoginField = () => {
         <div className="loginField">
             <Box component="form" noValidate onSubmit={handleSubmit}>
                 <div className="login_inputField">
-                    <TextField id="standard-basic" name="email" label="이메일" variant="standard" sx={{width: 280}}/>
-                    <br/>
-                    <TextField id="standard-basic" name="password" label="비밀번호"  type="password" variant="standard" sx={{width: 280}}/>
+                    <div>
+                        <TextField id="standard-basic" name="email" label="이메일" variant="standard"
+                                   sx={{width: '35vh'}}/>
+                    </div>
+                    <div>
+                        <TextField id="standard-basic" name="password" label="비밀번호" type="password" variant="standard"
+                                   sx={{width: '35vh'}}/>
+                    </div>
                 </div>
                 <div className="login_linkField">
-                    <p className="login_findLink">이메일찾기</p>
+                    <Link to={"/find-info"} state={{fieldValue: 0}} style={{textDecoration: 'none'}}>
+                        <p className="login_findLink">이메일찾기</p>
+                    </Link>
                     <p className="login_findNoLink">/</p>
-                    <p className="login_findLink">비밀번호찾기</p>
+                    <Link to={"/find-info"} state={{fieldValue: 1}} style={{textDecoration: 'none'}}>
+                        <p className="login_findLink">비밀번호찾기</p>
+                    </Link>
                 </div>
                 <div className="login_buttonField">
-                    <Button type="submit" variant="contained" sx={{width: 280, borderRadius: 30}}>로그인</Button>
+                    <Button type="submit" variant="contained" sx={{
+                        width: '35vh',
+                        borderRadius: 30,
+                        backgroundColor: '#8CD8E9',
+                        '&:hover': {
+                            backgroundColor: '#6BA3AF'
+                        }
+                    }}>로그인</Button>
                     <br/>
-                    <Button variant="contained" sx={{width: 280, borderRadius: 30}} onClick={()=>navigate("/policy")}>회원가입</Button>
+                    <Button variant="contained" sx={{
+                        width: '35vh',
+                        borderRadius: 30,
+                        backgroundColor: '#A9D18E',
+                        '&:hover': {
+                            backgroundColor: '#7C9A67'
+                        }
+                    }}
+                            onClick={() => navigate("/policy")}>회원가입</Button>
                 </div>
             </Box>
         </div>

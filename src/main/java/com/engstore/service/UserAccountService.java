@@ -14,8 +14,11 @@ public class UserAccountService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public UserAccount insertUserAccount(UserAccount userAccount) {
+    public UserAccount insertUserAccount(
+            UserAccount userAccount // TODO: DTO
+    ) {
         userAccount.setRole("ROLE_USER");
+        userAccount.setRoleUser();
         String rawPassword = userAccount.getPassword();
         String encPassword = bCryptPasswordEncoder.encode(rawPassword);
         userAccount.setPassword(encPassword);
