@@ -66,9 +66,23 @@ const LoginField = () => {
                     </Link>
                 </div>
                 <div className="login_buttonField">
-                    <Button type="submit" variant="contained" sx={{width: '35vh', borderRadius: 30}}>로그인</Button>
+                    <Button type="submit" variant="contained" sx={{
+                        width: '35vh',
+                        borderRadius: 30,
+                        backgroundColor: '#8CD8E9',
+                        '&:hover': {
+                            backgroundColor: '#6BA3AF'
+                        }
+                    }}>로그인</Button>
                     <br/>
-                    <Button variant="contained" sx={{width: '35vh', borderRadius: 30}}
+                    <Button variant="contained" sx={{
+                        width: '35vh',
+                        borderRadius: 30,
+                        backgroundColor: '#A9D18E',
+                        '&:hover': {
+                            backgroundColor: '#7C9A67'
+                        }
+                    }}
                             onClick={() => navigate("/policy")}>회원가입</Button>
                 </div>
             </Box>

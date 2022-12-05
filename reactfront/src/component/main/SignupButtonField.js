@@ -10,13 +10,31 @@ const SignupButtonField = () => {
     return (
         <div className="signup_buttonField">
             <Button variant="contained"
-                    sx={{width: 120, borderRadius: 30, marginLeft: 4, marginRight: 4}}
+                    sx={{
+                        width: 120,
+                        borderRadius: 30,
+                        marginLeft: 4,
+                        marginRight: 4,
+                        backgroundColor: '#D1D1D1',
+                        '&:hover': {
+                            backgroundColor: '#858585'
+                        }
+                    }}
                     onClick={() => navigate("/")}
             >
                 취소
             </Button>
             <Button variant="contained"
-                    sx={{width: 120, borderRadius: 30, marginLeft: 4, marginRight: 4}}
+                    sx={{
+                        width: 120,
+                        borderRadius: 30,
+                        marginLeft: 4,
+                        marginRight: 4,
+                        backgroundColor: '#A9D18E',
+                        '&:hover': {
+                            backgroundColor: '#7C9A67'
+                        }
+                    }}
                     onClick={() => {
                         if (url.pathname == '/policy') {
                             navigate("/signup");

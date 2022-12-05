@@ -3,20 +3,29 @@
     width: 38vh;
 }
 
-.find_infoBox {
+.infoPanel > div {
+    padding: 1vh;
+    height: 34vh;
 }
 
 .find_inputField {
-    heigt: 50vh
+    display: flex;
+    justify-content: center;
+
+    margin-bottom: 1vh;
+    height: 6vh;
 }
+
 
 .find_buttonField {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: row;
+}
 
-    float: bottom;
-
-    margin-top: 4vh;
+.find_buttonField > button{
+    font-size: 15px;
+    font-weight: 1000;
+    letter-spacing: 5px;
 }

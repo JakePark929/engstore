@@ -1,24 +1,19 @@
 .signupField {
-    margin-top: 10px;
+    margin-top: 3vh;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
+    overflow-x: hidden;
+    left: 20px;
+    width: 115vh;
+    height: 64vh;
 }
 
 .signupField > form > div{
-    margin: 8px;
+    margin: 2vh 0vh 2vh 0vh;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.signup_inputDate {
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.signup_inputDate > div {
-    margin: 32px 8px 20px 8px;
 }
 
 #signup_inputGender {
@@ -33,7 +28,7 @@
 }
 
 #demo-row-radio-buttons-group-label {
-    margin-top: 9px;
+    margin-top: 1vh;
     margin-right: 25px;
     font-size: 18px;
 }

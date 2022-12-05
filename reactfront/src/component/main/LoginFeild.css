@@ -8,7 +8,7 @@
 }
 
 .login_inputField > div {
-    margin-bottom: 10px;
+    margin-bottom: 1vh;
 }
 
 .login_linkField {
@@ -31,7 +31,7 @@
 }
 
 .login_buttonField {
-    margin-top: 5vh;
+    margin-top: 7vh;
     margin-bottom: 6vh;
 }
 
