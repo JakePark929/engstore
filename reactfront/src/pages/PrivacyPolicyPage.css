@@ -37,8 +37,8 @@
     margin-top: 2vh;
 }
 
-.signup_mainLabel {
-
+.signup_mainLabel > h2 {
+    font-size: 30px;
 }
 
 .signup_borderLine {

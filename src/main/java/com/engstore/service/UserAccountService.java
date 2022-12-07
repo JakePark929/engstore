@@ -24,4 +24,17 @@ public class UserAccountService {
         userAccount.setPassword(encPassword);
         return userAccountRepository.save(userAccount);
     }
+
+    @Transactional
+    public UserAccount findMail(UserAccount userAccount) {
+        String name = userAccount.getName();
+        String birth = userAccount.getBirth();
+        String phone1 = userAccount.getPhone1();
+        return userAccountRepository.findByNameAndBirthAndPhone1(name, birth, phone1);
+    }
+
+//    @Transactional
+//    public UserAccount findPw(UserAccount userAccount) {
+//
+//    }
 }
