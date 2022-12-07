@@ -23,7 +23,21 @@ const SignupPage = () => {
     const handleSubmits = (e) => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
-        const addBirth = data.get('birthYear') + data.get('birthMonth') + data.get('birthDay')
+        let birthMonth;
+        let birthDay;
+
+        if (data.get('birthMonth')<10) {
+            birthMonth= '0'+data.get('birthMonth')
+        } else {
+            birthMonth = String(data.get('birthMonth'));
+        }
+        if (data.get('birthDay')<10) {
+            birthDay= '0'+data.get('birthDay')
+        } else {
+            birthDay = String(data.get('birthDay'));
+        }
+
+        const addBirth = data.get('birthYear') + birthMonth + birthDay;
         const user = {
             email: data.get('email'),
             password: data.get('password'),
@@ -43,7 +57,7 @@ const SignupPage = () => {
             .then(res => {
                 console.log(1, res)
                 if (res.status === 201) {
-                    return res.json()
+                    return res.json();
                 } else {
                     return null;
                 }
@@ -171,14 +185,32 @@ const SignupPage = () => {
                         </div>
                         <div className="sign_buttonField">
                             <Button variant="contained"
-                                    sx={{width: 120, borderRadius: 30, marginLeft: 4, marginRight: 4}}
+                                    sx={{
+                                        width: 120,
+                                        borderRadius: 30,
+                                        marginLeft: 4,
+                                        marginRight: 4,
+                                        backgroundColor: '#D1D1D1',
+                                        '&:hover': {
+                                            backgroundColor: '#858585'
+                                        }
+                                    }}
                                     onClick={() => navigate("/")}
                             >
                                 취소
                             </Button>
                             <Button variant="contained"
                                     type="submit"
-                                    sx={{width: 120, borderRadius: 30, marginLeft: 4, marginRight: 4}}
+                                    sx={{
+                                        width: 120,
+                                        borderRadius: 30,
+                                        marginLeft: 4,
+                                        marginRight: 4,
+                                        backgroundColor: '#A9D18E',
+                                        '&:hover': {
+                                            backgroundColor: '#7C9A67'
+                                        }
+                                    }}
                             >
                                 다음
                             </Button>

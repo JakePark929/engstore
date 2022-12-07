@@ -1,7 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './FindInfoField.css';
-import {AppBar, Box, Button, Tab, Tabs, TextField, Typography, useTheme} from "@mui/material";
-import * as PropTypes from "prop-types";
+import {Box, Button, Modal, Tab, Tabs, TextField, Typography} from "@mui/material";
 import {useLocation, useNavigate} from "react-router-dom";
 import InputDateField from "./InputDateField";
 
@@ -38,19 +37,102 @@ function a11yProps(index: number) {
     };
 }
 
+// 모달 스타일
+const modalStyle = {
+    position: 'absolute',
+    top: '43%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '43vh',
+    height: '28vh',
+    bgcolor: '#F0F0F0',
+    borderRadius: 15,
+    boxShadow: 12,
+    p: 4,
+};
+
 const FindInfoField = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const fieldValue = location.state.fieldValue;
     const [value, setValue] = React.useState(fieldValue);
+    const [resUser, setResUser] = useState({
+        email: "",
+    });
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    const [errOpen, setErrOpen] = React.useState(false);
+    const handleErrOpen = () => setErrOpen(true);
+    const handleErrClose = () => setErrOpen(false);
+
+    const handleSubmits = (e) => {
+        e.preventDefault();
+        const data = new FormData(e.currentTarget);
+        let url;
+        let birthMonth;
+        let birthDay;
+
+        if (data.get('birthMonth') < 10) {
+            birthMonth = '0' + data.get('birthMonth')
+        } else {
+            birthMonth = String(data.get('birthMonth'));
+        }
+        if (data.get('birthDay') < 10) {
+            birthDay = '0' + data.get('birthDay')
+        } else {
+            birthDay = String(data.get('birthDay'));
+        }
+
+        const addBirth = data.get('birthYear') + birthMonth + birthDay;
+        const user = {
+            email: data.get('email'),
+            name: data.get('name'),
+            birth: addBirth,
+            phone1: data.get('phone')
+        };
+
+        if (value === 0) {
+            url = "http://localhost:9090" + "/find-mail";
+        } else if (value === 1) {
+            url = "http://localhost:9090" + "/find-pw";
+        }
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => {
+                console.log(1, res)
+                if (res.status === 200) {
+                    return res.json();
+                } else if(res.status === 204) {
+                    return null;
+                }
+            })
+            .then(res => { // Catch는 여기서 오류가 나야 실행됨
+                console.log("정상", res);
+                if (res !== null) {
+                    setResUser(res);
+                    handleOpen();
+                } else {
+                    handleErrOpen();
+                }
+            })
+    }
+
     return (
         <div className="findInfoField">
-            <Box sx={{width: '99%'}} className="find_infoBox">
+            <Box sx={{width: '99%'}} className="find_infoBox" component="form" noValidate onSubmit={handleSubmits}>
                 <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                     <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" centered>
                         <Tab sx={{fontSize: '2vh', fontWeight: 1000, margin: '3px 2vh 3px 1vh'}}
@@ -107,6 +189,7 @@ const FindInfoField = () => {
                         취소
                     </Button>
                     <Button variant="contained"
+                            type="submit"
                             sx={{
                                 width: 120,
                                 height: '5vh',
@@ -118,13 +201,86 @@ const FindInfoField = () => {
                                     backgroundColor: '#6BA3AF'
                                 }
                             }}
-                            onClick={() => {
-                            }}
                     >
                         다음
                     </Button>
                 </div>
             </Box>
+
+            {/*모달관련*/}
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                className="modalField"
+            >
+                <Box sx={modalStyle} className="find_modal">
+                    <div className="modal_scriptField">
+                        <div className="modal_headScript">
+                            <h2>귀하의 이메일은</h2>
+                        </div>
+                        <div className="modal_script">
+                            <p>{resUser.email}</p>
+                        </div>
+                        <div className="modal_footScript">
+                            <h2>입니다.</h2>
+                        </div>
+                        <div className="modal_buttonField">
+                            <Button variant="contained"
+                                    sx={{
+                                        width: 200,
+                                        height: '4vh',
+                                        borderRadius: 30,
+                                        marginLeft: '2vh',
+                                        marginRight: '2vh',
+                                        backgroundColor: '#D1D1D1',
+                                        '&:hover': {
+                                            backgroundColor: '#858585'
+                                        }
+                                    }}
+                                    onClick={() => handleClose()}
+                            >
+                                닫기
+                            </Button>
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
+
+            <Modal
+                open={errOpen}
+                onClose={handleErrClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                className="modalField"
+            >
+                <Box sx={modalStyle} className="find_modal">
+                    <div className="modal_errScriptField">
+                        <div className="modal_errScript">
+                            <h2>사용자 정보를 찾을 수 없습니다.</h2>
+                        </div>
+                        <div className="modal_buttonField">
+                            <Button variant="contained"
+                                    sx={{
+                                        width: 200,
+                                        height: '4vh',
+                                        borderRadius: 30,
+                                        marginLeft: '2vh',
+                                        marginRight: '2vh',
+                                        backgroundColor: '#D1D1D1',
+                                        '&:hover': {
+                                            backgroundColor: '#858585'
+                                        }
+                                    }}
+                                    onClick={() => handleErrClose()}
+                            >
+                                닫기
+                            </Button>
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
         </div>
     );
 };

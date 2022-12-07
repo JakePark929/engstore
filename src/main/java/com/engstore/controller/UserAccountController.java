@@ -31,4 +31,25 @@ public class UserAccountController {
     public String moduleMain() {
         return "/index.html";
     }
+
+    @CrossOrigin
+    @PostMapping("/find-mail")
+    @ResponseBody
+    public ResponseEntity<?> findMail(@RequestBody UserAccount userAccount) {
+        System.out.println(userAccount);
+        UserAccount ResUserAccount = userAccountService.findMail(userAccount);
+        System.out.println(ResUserAccount);
+        if (ResUserAccount != null) {
+            return new ResponseEntity<>(ResUserAccount, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+    }
+
+//    @CrossOrigin
+//    @PostMapping("/find-pw")
+//    @ResponseBody
+//    public ResponseEntity<?> findPw(@RequestBody UserAccount userAccount) {
+//        System.out.println(userAccount);
+//        return new ResponseEntity<>(UserAccountService.findPw(userAccount), HttpStatus.OK);
+//    }
 }
