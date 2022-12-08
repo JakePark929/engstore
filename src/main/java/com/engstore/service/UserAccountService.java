@@ -37,4 +37,10 @@ public class UserAccountService {
 //    public UserAccount findPw(UserAccount userAccount) {
 //
 //    }
+
+    @Transactional
+    public UserAccount findByEmail(UserAccount userAccount) {
+        String username = userAccount.getEmail();
+        return userAccountRepository.findByEmail(username);
+    }
 }

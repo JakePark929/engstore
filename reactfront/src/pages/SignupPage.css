@@ -43,3 +43,8 @@
     font-weight: 1000;
     letter-spacing: 5px;
 }
+
+.sign_mailButtonField > button {
+    font-size: 14px;
+    font-weight: 1000;
+}
