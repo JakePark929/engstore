@@ -2,7 +2,6 @@ import React from 'react';
 import './ModuleMainPage.css';
 import {useNavigate} from "react-router-dom";
 import {Button, Paper} from "@mui/material";
-import ModuleHeader from "../component/ModuleHeader";
 
 const ModuleMainPage = () => {
     const navigate = useNavigate();
@@ -38,8 +37,17 @@ const ModuleMainPage = () => {
                     </div>
                     <div className="module_buttonField">
                         <Button variant="contained"
-                                sx={{width: '32vh', height:45, borderRadius: 30,
-                                    fontSize: '2vh', fontWeight: 1000}}
+                                sx={{
+                                    width: '32vh',
+                                    height: 45,
+                                    borderRadius: 30,
+                                    fontSize: '2vh',
+                                    fontWeight: 1000,
+                                    backgroundColor: '#12A3CC',
+                                    '&:hover': {
+                                        backgroundColor: '#0E7997'
+                                    }
+                                }}
                                 onClick={() => navigate("/module/dwg")}
                         >
                             이동하기&nbsp;&nbsp;>
@@ -75,8 +83,17 @@ const ModuleMainPage = () => {
                     </div>
                     <div className="module_buttonField">
                         <Button variant="contained"
-                                sx={{width: '32vh', height:45, borderRadius: 30,
-                                    fontSize: '2vh', fontWeight: 1000}}
+                                sx={{
+                                    width: '32vh',
+                                    height: 45,
+                                    borderRadius: 30,
+                                    fontSize: '2vh',
+                                    fontWeight: 1000,
+                                    backgroundColor: '#5C70EB',
+                                    '&:hover': {
+                                        backgroundColor: '#4150A9'
+                                    }
+                                }}
                                 onClick={() => navigate("/module/sheet")}
                         >
                             이동하기&nbsp;&nbsp;>
@@ -112,8 +129,17 @@ const ModuleMainPage = () => {
                     </div>
                     <div className="module_buttonField">
                         <Button variant="contained"
-                                sx={{width: '32vh', height:45, borderRadius: 30,
-                                    fontSize: '2vh', fontWeight: 1000}}
+                                sx={{
+                                    width: '32vh',
+                                    height: 45,
+                                    borderRadius: 30,
+                                    fontSize: '2vh',
+                                    fontWeight: 1000,
+                                    backgroundColor: '#A74BFD',
+                                    '&:hover': {
+                                        backgroundColor: '#7030AC'
+                                    }
+                                }}
                                 onClick={() => navigate("/module/doc")}
                         >
                             이동하기&nbsp;&nbsp;>

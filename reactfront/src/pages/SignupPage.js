@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './SignupPage.css';
 import {
     Box, Button,
@@ -19,6 +19,41 @@ import InputDateField from "../component/main/InputDateField";
 
 const SignupPage = () => {
     const navigate = useNavigate();
+    const [userMail, setUserMail] = useState("");
+
+    const handleOnChange = (e) => {
+        setUserMail(e.target.value);
+    };
+
+    const checkDuplicated = () => {
+        console.log(userMail);
+        const post = {
+            email: userMail,
+        }
+        fetch("http://localhost:9090" + "/check-dupl", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(post)
+        })
+            .then(res => {
+                console.log(1, res)
+                if (res.status === 200) {
+                    return res.json();
+                } else if(res.status === 204) {
+                    return null;
+                }
+            })
+            .then(res => { // Catch는 여기서 오류가 나야 실행됨
+                console.log("정상", res);
+                if (res === null) {
+                    console.log("사용가능합니다.")
+                } else {
+                    console.log("사용불가합니다.")
+                }
+            })
+    }
 
     const handleSubmits = (e) => {
         e.preventDefault();
@@ -26,13 +61,13 @@ const SignupPage = () => {
         let birthMonth;
         let birthDay;
 
-        if (data.get('birthMonth')<10) {
-            birthMonth= '0'+data.get('birthMonth')
+        if (data.get('birthMonth') < 10) {
+            birthMonth = '0' + data.get('birthMonth')
         } else {
             birthMonth = String(data.get('birthMonth'));
         }
-        if (data.get('birthDay')<10) {
-            birthDay= '0'+data.get('birthDay')
+        if (data.get('birthDay') < 10) {
+            birthDay = '0' + data.get('birthDay')
         } else {
             birthDay = String(data.get('birthDay'));
         }
@@ -98,7 +133,39 @@ const SignupPage = () => {
                                        label="이메일(*)"
                                        variant="standard"
                                        sx={{width: 320}}
+                                       onChange={handleOnChange}
                             />
+                        </div>
+                        <div className="sign_mailButtonField">
+                            <Button variant="contained"
+                                    sx={{
+                                        width: 130,
+                                        borderRadius: 3,
+                                        marginLeft: 2,
+                                        marginRight: 2,
+                                        backgroundColor: '#12A3CC',
+                                        '&:hover': {
+                                            backgroundColor: '#0E7997'
+                                        }
+                                    }}
+                                    onClick={() => checkDuplicated()}
+                            >
+                                중복확인
+                            </Button>
+                            <Button variant="contained"
+                                    sx={{
+                                        width: 130,
+                                        borderRadius: 3,
+                                        marginLeft: 2,
+                                        marginRight: 2,
+                                        backgroundColor: '#5C70EB',
+                                        '&:hover': {
+                                            backgroundColor: '#4150A9'
+                                        }
+                                    }}
+                            >
+                                이메일 인증
+                            </Button>
                         </div>
                         <div>
                             <TextField
@@ -217,8 +284,6 @@ const SignupPage = () => {
                         </div>
                     </Box>
                 </div>
-                {/*<SignupButtonField/>*/}
-
             </Paper>
         </div>
     );
