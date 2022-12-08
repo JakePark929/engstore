@@ -20,6 +20,13 @@ public class UserAccountController {
     }
 
     @CrossOrigin
+    @GetMapping("/login-error")
+    @ResponseBody
+    public ResponseEntity<?> loginError() {
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @CrossOrigin
     @PostMapping("/signup-user")
     @ResponseBody
     public ResponseEntity<?> save(@RequestBody UserAccount userAccount) {
@@ -37,7 +44,7 @@ public class UserAccountController {
         if (resUserAccount != null) {
             return new ResponseEntity<>(resUserAccount, HttpStatus.OK);
         }
-        return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @CrossOrigin

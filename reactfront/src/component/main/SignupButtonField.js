@@ -6,7 +6,6 @@ import {useLocation, useNavigate} from "react-router-dom";
 const SignupButtonField = () => {
     const navigate = useNavigate();
     const url = useLocation();
-    console.log(url);
     return (
         <div className="signup_buttonField">
             <Button variant="contained"
