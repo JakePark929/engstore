@@ -41,3 +41,28 @@
     font-weight: 1000;
     letter-spacing: 5px;
 }
+
+.login_modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.login_modal_scriptField > div {
+    display: flex;
+    justify-content: center;
+    margin: 3vh 1vh 3vh 1vh;
+}
+
+.login_modal_scriptField > div > h2 {
+    font-size: 22px;
+}
+
+.login_modal_scriptField > div > p {
+    font-size: 14px;
+}
+
+.modalField > div:nth-child(1) {
+    background-color: rgba(0,0,0,0);
+}

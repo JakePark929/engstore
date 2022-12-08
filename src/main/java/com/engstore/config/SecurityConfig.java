@@ -25,6 +25,7 @@ public class SecurityConfig {
                     .usernameParameter("email")
                     .loginProcessingUrl("/login")
                     .defaultSuccessUrl("/module/main")
+                    .failureUrl("/login-error")
                 .and()
                 .build();
     }

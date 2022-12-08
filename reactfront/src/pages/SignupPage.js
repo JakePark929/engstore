@@ -13,17 +13,22 @@ import {
     Select,
     TextField
 } from "@mui/material";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InputDateField from "../component/main/InputDateField";
 
 const SignupPage = () => {
     const navigate = useNavigate();
     const [userMail, setUserMail] = useState("");
+    const [userAuth, setUserAuth] = useState("");
 
-    const handleOnChange = (e) => {
+    const handleOnChangeMail = (e) => {
         setUserMail(e.target.value);
     };
+
+    const handleOnChangeAuth = (e) => {
+        setUserAuth(e.target.value);
+    }
 
     const checkDuplicated = () => {
         console.log(userMail);
@@ -51,6 +56,49 @@ const SignupPage = () => {
                     console.log("사용가능합니다.")
                 } else {
                     console.log("사용불가합니다.")
+                }
+            })
+    }
+
+    const authMail = () => {
+        console.log(userMail);
+        const post = {
+            email: userMail,
+        }
+        fetch("http://localhost:9090" + "/signup-auth", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(post)
+        })
+            .then(res => {
+                console.log(1, res)
+                if (res.status === 200) {
+                    console.log("인증번호를 확인해주세요.");
+                } else {
+                    console.log("메일전송 실패");
+                }
+            })
+    }
+
+    const authMailCheck = () => {
+        const post = {
+            authCode: userAuth,
+        }
+        fetch("http://localhost:9090" + "/signup-authcheck", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json; charset=utf-8"
+            },
+            body: JSON.stringify(post)
+        })
+            .then(res => {
+                console.log(1, res)
+                if (res.status === 200) {
+                    console.log("인증 완료.");
+                } else {
+                    console.log("인증 실패");
                 }
             })
     }
@@ -127,22 +175,22 @@ const SignupPage = () => {
 
                 <div className="signupField">
                     <Box component="form" noValidate onSubmit={handleSubmits}>
-                        <div>
+                        <div className="sign_mailInputField">
                             <TextField id="standard-basic"
                                        name="email"
                                        label="이메일(*)"
                                        variant="standard"
-                                       sx={{width: 320}}
-                                       onChange={handleOnChange}
+                                       sx={{
+                                           width: 235,
+                                           marginLeft: 2,
+                                       }}
+                                       onChange={handleOnChangeMail}
                             />
-                        </div>
-                        <div className="sign_mailButtonField">
                             <Button variant="contained"
                                     sx={{
-                                        width: 130,
+                                        width: 90,
                                         borderRadius: 3,
-                                        marginLeft: 2,
-                                        marginRight: 2,
+                                        marginLeft: 1,
                                         backgroundColor: '#12A3CC',
                                         '&:hover': {
                                             backgroundColor: '#0E7997'
@@ -152,19 +200,37 @@ const SignupPage = () => {
                             >
                                 중복확인
                             </Button>
+                        </div>
+                        <div className="sign_mailAuthField">
+                            <p className="sign_mailAuthLink"
+                                onClick={() => authMail()}
+                            >
+                                이메일 인증하기
+                            </p>
+                        </div>
+                        <div className="sign_mailAuthField">
+                            <TextField id="standard-basic"
+                                       label="인증번호입력"
+                                       variant="standard"
+                                       sx={{
+                                           width: 235,
+                                           marginLeft: 2,
+                                       }}
+                                       onChange={handleOnChangeAuth}
+                            />
                             <Button variant="contained"
                                     sx={{
-                                        width: 130,
+                                        width: 90,
                                         borderRadius: 3,
-                                        marginLeft: 2,
-                                        marginRight: 2,
+                                        marginLeft: 1,
                                         backgroundColor: '#5C70EB',
                                         '&:hover': {
                                             backgroundColor: '#4150A9'
                                         }
                                     }}
+                                    onClick={() => authMailCheck()}
                             >
-                                이메일 인증
+                                확인
                             </Button>
                         </div>
                         <div>

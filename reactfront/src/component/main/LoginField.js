@@ -1,10 +1,30 @@
 import React from 'react';
 import './LoginFeild.css';
-import {Box, Button, FormLabel, TextField} from "@mui/material";
+import {Box, Button, FormLabel, Modal, TextField} from "@mui/material";
 import {Form, Link, useNavigate} from "react-router-dom";
+
+// 모달 스타일
+const modalStyle = {
+    position: 'absolute',
+    top: '43%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '43vh',
+    height: '28vh',
+    bgcolor: '#F0F0F0',
+    borderRadius: 15,
+    boxShadow: 12,
+    p: 4,
+};
 
 const LoginField = () => {
     const navigate = useNavigate();
+
+    // 모달관련
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const data = new FormData(e.currentTarget);
@@ -38,7 +58,7 @@ const LoginField = () => {
                 if (res.status === 200) {
                     navigate(url);
                 } else {
-                    // return alert("로그인 실패");
+                    handleOpen();
                 }
             })
     };
@@ -66,26 +86,71 @@ const LoginField = () => {
                     </Link>
                 </div>
                 <div className="login_buttonField">
-                    <Button type="submit" variant="contained" sx={{
-                        width: '35vh',
-                        borderRadius: 30,
-                        backgroundColor: '#8CD8E9',
-                        '&:hover': {
-                            backgroundColor: '#6BA3AF'
-                        }
-                    }}>로그인</Button>
+                    <Button type="submit"
+                            variant="contained"
+                            sx={{
+                                width: '35vh',
+                                borderRadius: 30,
+                                backgroundColor: '#8CD8E9',
+                                '&:hover': {
+                                    backgroundColor: '#6BA3AF'
+                                }
+                            }}
+                    >
+                        로그인
+                    </Button>
                     <br/>
-                    <Button variant="contained" sx={{
-                        width: '35vh',
-                        borderRadius: 30,
-                        backgroundColor: '#A9D18E',
-                        '&:hover': {
-                            backgroundColor: '#7C9A67'
-                        }
-                    }}
-                            onClick={() => navigate("/policy")}>회원가입</Button>
+                    <Button variant="contained"
+                            sx={{
+                                width: '35vh',
+                                borderRadius: 30,
+                                backgroundColor: '#A9D18E',
+                                '&:hover': {
+                                    backgroundColor: '#7C9A67'
+                                }
+                            }}
+                            onClick={() => navigate("/policy")}
+                    >
+                        회원가입
+                    </Button>
                 </div>
             </Box>
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                className="modalField"
+            >
+                <Box sx={modalStyle} className="login_modal">
+                    <div className="login_modal_scriptField">
+                        <div className="login_modal_headScript">
+                            <h2>올바르지 않은 정보를 입력하였습니다.</h2>
+                        </div>
+                        <div className="login_modal_script">
+                            <p>지속적으로 문제발생 시 Contact Us를 통해 문의바랍니다.</p>
+                        </div>
+                        <div className="login_modal_buttonField">
+                            <Button variant="contained"
+                                    sx={{
+                                        width: 200,
+                                        height: '4vh',
+                                        borderRadius: 30,
+                                        marginLeft: '2vh',
+                                        marginRight: '2vh',
+                                        backgroundColor: '#D1D1D1',
+                                        '&:hover': {
+                                            backgroundColor: '#858585'
+                                        }
+                                    }}
+                                    onClick={() => handleClose()}
+                            >
+                                확인
+                            </Button>
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
         </div>
     );
 };
