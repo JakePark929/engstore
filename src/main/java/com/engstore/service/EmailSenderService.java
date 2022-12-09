@@ -17,7 +17,7 @@ public class EmailSenderService {
 
     public String sendEmail(UserAccount userAccount) {
         String authCode = createKey();
-        String subject = "엔지니어링 디지털변환 클라우드 플랫폼 인증번호 메일";
+        String subject = "엔지니어링 설계정보 디지털변환 클라우드 플랫폼 인증번호 메일";
         String body = "인증번호 코드: " + authCode;
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("dxeng@wise.co.kr");
@@ -32,19 +32,35 @@ public class EmailSenderService {
         return authCode;
     }
 
+    public Boolean sendEmailWithNewPassword(String email, String rawPassword) {
+        String subject = "엔지니어링 설계정보 디지털변환 클라우드 플랫폼 비밀번호 초기화 메일";
+        String body = "초기화 비밀번호: " + rawPassword;
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("dxeng@wise.co.kr");
+        message.setTo(email);
+        message.setSubject(subject);
+        message.setText(body);
+
+        mailSender.send(message);
+
+        System.out.println("Mail sent Successfully...");
+
+        return true;
+    }
+
     private String createKey() {
         StringBuffer key = new StringBuffer();
         Random rnd = new Random();
 
-        for(int i = 0; i < 8; i++) {
+        for (int i = 0; i < 8; i++) {
             int index = rnd.nextInt(3);
 
             switch (index) {
                 case 0:
-                    key.append((char)((int)(rnd.nextInt(26)) + 97));
+                    key.append((char) ((rnd.nextInt(26)) + 97));
                     break;
                 case 1:
-                    key.append((char)((int)(rnd.nextInt(26)) + 65));
+                    key.append((char) ((rnd.nextInt(26)) + 65));
                     break;
                 case 2:
                     key.append(rnd.nextInt(10));

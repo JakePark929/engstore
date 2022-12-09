@@ -6,7 +6,7 @@ import {
     FormControlLabel,
     FormLabel,
     InputLabel,
-    MenuItem,
+    MenuItem, Modal,
     Paper,
     Radio,
     RadioGroup,
@@ -17,10 +17,30 @@ import {Link, useNavigate} from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InputDateField from "../component/main/InputDateField";
 
+// 모달 스타일
+const modalStyle = {
+    position: 'absolute',
+    top: '43%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: '43vh',
+    height: '28vh',
+    bgcolor: '#F0F0F0',
+    borderRadius: 15,
+    boxShadow: 12,
+    p: 4,
+};
+
 const SignupPage = () => {
     const navigate = useNavigate();
     const [userMail, setUserMail] = useState("");
     const [userAuth, setUserAuth] = useState("");
+    const [msg, setMsg] = useState("");
+
+    // 모달관련
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const handleOnChangeMail = (e) => {
         setUserMail(e.target.value);
@@ -45,17 +65,11 @@ const SignupPage = () => {
             .then(res => {
                 console.log(1, res)
                 if (res.status === 200) {
-                    return res.json();
+                    setMsg("이미 사용중인 Email 입니다.")
+                    handleOpen();
                 } else if(res.status === 204) {
-                    return null;
-                }
-            })
-            .then(res => { // Catch는 여기서 오류가 나야 실행됨
-                console.log("정상", res);
-                if (res === null) {
-                    console.log("사용가능합니다.")
-                } else {
-                    console.log("사용불가합니다.")
+                    setMsg("사용가능한 Email 입니다.")
+                    handleOpen();
                 }
             })
     }
@@ -75,9 +89,11 @@ const SignupPage = () => {
             .then(res => {
                 console.log(1, res)
                 if (res.status === 200) {
-                    console.log("인증번호를 확인해주세요.");
+                    setMsg("인증번호를 확인해주세요.");
+                    handleOpen();
                 } else {
-                    console.log("메일전송 실패");
+                    setMsg("메일전송 실패");
+                    handleOpen();
                 }
             })
     }
@@ -96,9 +112,11 @@ const SignupPage = () => {
             .then(res => {
                 console.log(1, res)
                 if (res.status === 200) {
-                    console.log("인증 완료.");
+                    setMsg("인증 완료");
+                    handleOpen();
                 } else {
-                    console.log("인증 실패");
+                    setMsg("인증 실패");
+                    handleOpen();
                 }
             })
     }
@@ -351,6 +369,41 @@ const SignupPage = () => {
                     </Box>
                 </div>
             </Paper>
+
+            {/*모달관련*/}
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                className="modalField"
+            >
+                <Box sx={modalStyle} className="sign_modal">
+                    <div className="modal_scriptField">
+                        <div className="modal_headScript">
+                            <h2>{msg}</h2>
+                        </div>
+                        <div className="modal_buttonField">
+                            <Button variant="contained"
+                                    sx={{
+                                        width: 200,
+                                        height: '4vh',
+                                        borderRadius: 30,
+                                        marginLeft: '2vh',
+                                        marginRight: '2vh',
+                                        backgroundColor: '#D1D1D1',
+                                        '&:hover': {
+                                            backgroundColor: '#858585'
+                                        }
+                                    }}
+                                    onClick={() => handleClose()}
+                            >
+                                닫기
+                            </Button>
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
         </div>
     );
 };

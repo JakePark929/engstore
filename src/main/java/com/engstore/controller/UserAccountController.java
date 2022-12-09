@@ -42,7 +42,7 @@ public class UserAccountController {
         UserAccount resUserAccount = userAccountService.findByEmail(userAccount);
         System.out.println(resUserAccount);
         if (resUserAccount != null) {
-            return new ResponseEntity<>(resUserAccount, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -60,13 +60,18 @@ public class UserAccountController {
         return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
     }
 
-//    @CrossOrigin
-//    @PostMapping("/find-pw")
-//    @ResponseBody
-//    public ResponseEntity<?> findPw(@RequestBody UserAccount userAccount) {
-//        System.out.println(userAccount);
-//        return new ResponseEntity<>(UserAccountService.findPw(userAccount), HttpStatus.OK);
-//    }
+    @CrossOrigin
+    @PostMapping("/find-pw")
+    @ResponseBody
+    public ResponseEntity<?> findPw(@RequestBody UserAccount userAccount) {
+        System.out.println(userAccount);
+        Boolean resetPw = userAccountService.findPw(userAccount);
+        System.out.println(resetPw);
+        if (resetPw) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
     @GetMapping("/module/main")
     public String moduleMain() {
