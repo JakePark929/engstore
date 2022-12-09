@@ -63,11 +63,15 @@ const FindInfoField = () => {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-    
+
     // 모달관련
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [resetOpen, setResetOpen] = React.useState(false);
+    const handleResetOpen = () => setResetOpen(true);
+    const handleResetClose = () => setResetOpen(false);
 
     const [errOpen, setErrOpen] = React.useState(false);
     const handleErrOpen = () => setErrOpen(true);
@@ -104,31 +108,52 @@ const FindInfoField = () => {
         } else if (value === 1) {
             url = "http://localhost:9090" + "/find-pw";
         }
+        console.log(url.slice(url.lastIndexOf("/")))
+        if (url.slice(url.lastIndexOf("/")) === "/find-mail") {
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(user)
+            })
+                .then(res => {
+                    console.log(1, res)
+                    if (res.status === 200) {
+                        return res.json();
+                    } else if (res.status === 204) {
+                        return null;
+                    }
+                })
+                .then(res => { // Catch는 여기서 오류가 나야 실행됨
+                    console.log("정상", res);
+                    if (res !== null) {
+                        setResUser(res);
+                        handleOpen();
+                    } else {
+                        handleErrOpen();
+                    }
+                })
+        }
 
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json; charset=utf-8"
-            },
-            body: JSON.stringify(user)
-        })
-            .then(res => {
-                console.log(1, res)
-                if (res.status === 200) {
-                    return res.json();
-                } else if(res.status === 204) {
-                    return null;
-                }
+        if (url.slice(url.lastIndexOf("/")) === "/find-pw") {
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json; charset=utf-8"
+                },
+                body: JSON.stringify(user)
             })
-            .then(res => { // Catch는 여기서 오류가 나야 실행됨
-                console.log("정상", res);
-                if (res !== null) {
-                    setResUser(res);
-                    handleOpen();
-                } else {
-                    handleErrOpen();
-                }
-            })
+                .then(res => {
+                    console.log(1, res)
+                    if (res.status === 200) {
+                        handleResetOpen();
+                    } else {
+                        handleErrOpen();
+                    }
+                })
+        }
+
     }
 
     return (
@@ -243,6 +268,56 @@ const FindInfoField = () => {
                                     onClick={() => handleClose()}
                             >
                                 닫기
+                            </Button>
+                        </div>
+                    </div>
+                </Box>
+            </Modal>
+
+            <Modal
+                open={resetOpen}
+                onClose={handleResetClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                className="modalField"
+            >
+                <Box sx={modalStyle} className="find_modal">
+                    <div className="modal_scriptField">
+                        <div className="modal_headScript">
+                            <h2>귀하의 이메일로 임시 비밀번호를 발송했습니다.</h2>
+                        </div>
+                        <div className="modal_buttonField">
+                            <Button variant="contained"
+                                    sx={{
+                                        width: 120,
+                                        height: '4vh',
+                                        borderRadius: 30,
+                                        marginLeft: '2vh',
+                                        marginRight: '2vh',
+                                        backgroundColor: '#D1D1D1',
+                                        '&:hover': {
+                                            backgroundColor: '#858585'
+                                        }
+                                    }}
+                                    onClick={() => handleResetClose()}
+                            >
+                                닫기
+                            </Button>
+                            <Button variant="contained"
+                                    sx={{
+                                        width: 120,
+                                        height: '4vh',
+                                        borderRadius: 30,
+                                        marginLeft: '2vh',
+                                        marginRight: '2vh',
+                                        backgroundColor: '#8CD8E9',
+                                        '&:hover': {
+                                            backgroundColor: '#6BA3AF'
+                                        }
+                                    }}
+                                    onClick={() => navigate("/")}
+                            >
+                                로그인하기
                             </Button>
                         </div>
                     </div>

@@ -60,3 +60,24 @@
     font-weight: 1000;
     letter-spacing: 5px;
 }
+
+.sign_modal{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.modal_scriptField > div {
+    display: flex;
+    justify-content: center;
+    margin: 3vh 1vh 3vh 1vh;
+}
+
+.modal_scriptField > div > h2 {
+    font-size: 26px;
+}
+
+.modalField > div:nth-child(1) {
+    background-color: rgba(0,0,0,0);
+}
