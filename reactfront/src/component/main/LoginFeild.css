@@ -56,11 +56,11 @@
 }
 
 .login_modal_scriptField > div > h2 {
-    font-size: 22px;
+    font-size: 2.8vh;
 }
 
 .login_modal_scriptField > div > p {
-    font-size: 14px;
+    font-size: 1.9vh;
 }
 
 .modalField > div:nth-child(1) {

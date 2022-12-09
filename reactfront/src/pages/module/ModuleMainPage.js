@@ -1,7 +1,7 @@
 import React from 'react';
 import './ModuleMainPage.css';
-import {useNavigate} from "react-router-dom";
 import {Button, Paper} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
 const ModuleMainPage = () => {
     const navigate = useNavigate();

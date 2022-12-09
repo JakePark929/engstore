@@ -5,9 +5,12 @@ import MainPage from "./pages/MainPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import SignupPage from "./pages/SignupPage";
 import SignupCompletePage from "./pages/SignupCompletePage";
-import ModuleMainPage from "./pages/ModuleMainPage";
 import ModuleHeader from "./component/ModuleHeader";
 import React from "react";
+import ModuleDwgPage from "./pages/module/ModuleDwgPage";
+import ModuleSheetPage from "./pages/module/ModuleSheetPage";
+import ModuleDocPage from "./pages/module/ModuleDocPage";
+import ModuleMainPage from "./pages/module/ModuleMainPage";
 
 function App() {
     const loc = useLocation();
@@ -22,6 +25,9 @@ function App() {
                     <Route path="/signup" exact={true} element={<SignupPage/>}/>
                     <Route path="/signup-complete" exact={true} element={<SignupCompletePage/>}/>
                     <Route path="/module/main" exact={true} element={<ModuleMainPage/>}/>
+                    <Route path="/module/dwg" exact={true} element={<ModuleDwgPage/>}/>
+                    <Route path="/module/sheet" exact={true} element={<ModuleSheetPage/>}/>
+                    <Route path="/module/doc" exact={true} element={<ModuleDocPage/>}/>
                 </Routes>
             </div>
             <Footer/>

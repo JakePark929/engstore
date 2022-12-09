@@ -1,0 +1,93 @@
+.moduleIntroPaper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 122vh;
+    height: 72vh;
+    margin-bottom: 7vh;
+}
+
+.module_mainField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.module_introField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0vh 6vh 0vh 4vh;
+}
+
+.module_introField > div{
+    margin: 1vh 0vh 1vh 0vh;
+}
+
+.module_introImgField {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.module_introImg {
+    width: 42vh;
+    height: 42vh;
+}
+
+.module_introField > div > h1 {
+    text-align: center;
+    font-size: 37px;
+    letter-spacing: 5vh;
+    text-indent: 5vh;
+}
+
+.module_introScriptBox {
+    border-radius: 24px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    width: 45vh;
+
+    margin: 0vh 4vh 0vh 6vh;
+    padding: 1.6vh 2.1vh 2.5vh 2.1vh;
+}
+
+.module_introScriptBox:nth-child(1) {
+    margin-bottom: 5vh;
+}
+
+.module_introScriptBox > * {
+    margin: 0.5vh;
+}
+
+.module_introScriptLabel {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+
+    margin: 0.9vh 0vh 0.9vh 0vh;
+
+    color: #686868;
+}
+
+.module_introPoint {
+    background-color: #686868;
+    border-radius: 30px;
+    width: 5px;
+    height: 5px;
+
+    margin-right: 7px;
+}
+
+.module_introScript {
+    font-size: 2.0vh;
+}

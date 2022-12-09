@@ -72,10 +72,4 @@ public class UserAccountController {
         }
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
-    @GetMapping("/module/main")
-    public String moduleMain() {
-        return "/index.html";
-    }
-
 }
