@@ -11,6 +11,8 @@ import ModuleDwgPage from "./pages/module/ModuleDwgPage";
 import ModuleSheetPage from "./pages/module/ModuleSheetPage";
 import ModuleDocPage from "./pages/module/ModuleDocPage";
 import ModuleMainPage from "./pages/module/ModuleMainPage";
+import ModuleDwgDataPage from "./pages/module/ModuleDwgDataPage";
+import ModuleSheetDataPage from "./pages/module/ModuleSheetDataPage";
 
 function App() {
     const loc = useLocation();
@@ -26,7 +28,9 @@ function App() {
                     <Route path="/signup-complete" exact={true} element={<SignupCompletePage/>}/>
                     <Route path="/module/main" exact={true} element={<ModuleMainPage/>}/>
                     <Route path="/module/dwg" exact={true} element={<ModuleDwgPage/>}/>
+                    <Route path="/module/dwg/data" exact={true} element={<ModuleDwgDataPage/>}/>
                     <Route path="/module/sheet" exact={true} element={<ModuleSheetPage/>}/>
+                    <Route path="/module/sheet/data" exact={true} element={<ModuleSheetDataPage/>}/>
                     <Route path="/module/doc" exact={true} element={<ModuleDocPage/>}/>
                 </Routes>
             </div>

@@ -50,13 +50,15 @@ public class UserAccountService {
         String phone1 = userAccount.getPhone1();
 
         UserAccount userAccountEntity = userAccountRepository.findByEmailAndNameAndBirthAndPhone1(email, name, birth, phone1);
-        String rawPassword = createKey();
-        boolean sentEmail = emailSenderService.sendEmailWithNewPassword(email, rawPassword);
-        if (sentEmail) {
-            System.out.println("초기화된 비밀번호: " + rawPassword);
-            String encPassword = bCryptPasswordEncoder.encode(rawPassword);
-            userAccountEntity.setPassword(encPassword);
-            return true;
+        if (userAccountEntity != null) {
+            String rawPassword = createKey();
+            boolean sentEmail = emailSenderService.sendEmailWithNewPassword(email, rawPassword);
+            if (sentEmail) {
+                System.out.println("초기화된 비밀번호: " + rawPassword);
+                String encPassword = bCryptPasswordEncoder.encode(rawPassword);
+                userAccountEntity.setPassword(encPassword);
+                return true;
+            }
         }
         return false;
     }
