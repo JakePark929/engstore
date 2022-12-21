@@ -2,6 +2,7 @@ import React from 'react';
 import './LoginFeild.css';
 import {Box, Button, FormLabel, Modal, TextField} from "@mui/material";
 import {Form, Link, useNavigate} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 // 모달 스타일
 const modalStyle = {
@@ -18,6 +19,8 @@ const modalStyle = {
 };
 
 const LoginField = () => {
+    const {localhost} = useSelector((store) => store);
+
     const navigate = useNavigate();
 
     // 모달관련
@@ -44,7 +47,7 @@ const LoginField = () => {
 
         console.log(formBody)
 
-        fetch("http://localhost:9090" + "/login", {
+        fetch(localhost + "/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
