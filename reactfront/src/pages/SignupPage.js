@@ -16,6 +16,7 @@ import {
 import {Link, useNavigate} from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import InputDateField from "../component/main/InputDateField";
+import {useSelector} from "react-redux";
 
 // 모달 스타일
 const modalStyle = {
@@ -32,6 +33,8 @@ const modalStyle = {
 };
 
 const SignupPage = () => {
+    const {localhost} = useSelector((store) => store);
+
     const navigate = useNavigate();
     const [userMail, setUserMail] = useState("");
     const [userAuth, setUserAuth] = useState("");
@@ -55,7 +58,7 @@ const SignupPage = () => {
         const post = {
             email: userMail,
         }
-        fetch("http://localhost:9090" + "/check-dupl", {
+        fetch(localhost + "/check-dupl", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
@@ -79,7 +82,7 @@ const SignupPage = () => {
         const post = {
             email: userMail,
         }
-        fetch("http://localhost:9090" + "/signup-auth", {
+        fetch(localhost + "/signup-auth", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
@@ -102,7 +105,7 @@ const SignupPage = () => {
         const post = {
             authCode: userAuth,
         }
-        fetch("http://localhost:9090" + "/signup-authcheck", {
+        fetch(localhost + "/signup-authcheck", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8"
@@ -148,7 +151,7 @@ const SignupPage = () => {
             phone1: data.get('phone1')
         };
         console.log(user);
-        fetch("http://localhost:9090" + "/signup-user", {
+        fetch(localhost + "/signup-user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json; charset=utf-8"

@@ -7,12 +7,12 @@
     justify-content: center;
     width: 100%;
 
-    /* Footer Font*/
+    /* FooterK Font*/
     font-size: 24px;
     font-weight: bold;
 }
 
 .moduleHeaderLabel {
-    margin-top: 3vh;
+    margin-top: 2.5vh;
     cursor: pointer;
 }

@@ -1,0 +1,93 @@
+.data_paperContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.data_sidePaper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 34vh;
+    height: 76vh;
+    margin: 0vh 1.5vh 1vh 1vh;
+}
+
+.data_sideHeader {
+    margin: 2.9vh 1vh 1vh 1vh;
+    font-size: 2vh;
+}
+
+.data_borderLine {
+    border-bottom : 2px solid #686868;
+    width: 31vh;
+    height: 1px;
+}
+
+.data_folderList{
+    overflow: auto;
+    overflow-x: hidden;
+}
+
+.data_ListButton {
+    height: 4vh;
+}
+
+.data_listIcon > img {
+    padding-top: 2px;
+    width: 40px;
+    height: 40px;
+}
+
+.data_listName > span {
+    color: #686868;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.data_mainPaper {
+    display: flex;
+    flex-direction: column;
+    width: 160vh;
+    /*width: 90vh;*/
+    height: 76vh;
+    margin: 0vh 1vh 1vh 1.5vh;
+}
+
+.data_sheetPaper {
+    display: flex;
+    flex-direction: column;
+    /*width: 160vh;*/
+    width: 120vh;
+    height: 76vh;
+    margin: 0vh 1vh 1vh 1.5vh;
+}
+
+.data_buttonField {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    flex-direction: row;
+    margin: 2.5vh 5vh 2.5vh 2.5vh;
+}
+
+.data_buttonField > button {
+   margin-left: 2.5vh;
+}
+
+.data_directoryFiled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.data_directoryBox {
+    border: 1px solid rgba(199, 199, 199, 0.4);
+}
+
+.photoBox > img {
+    padding-top: 2px;
+    width: 35px;
+    height: 35px;
+}

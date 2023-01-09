@@ -3,6 +3,7 @@ import './FindInfoField.css';
 import {Box, Button, Modal, Tab, Tabs, TextField, Typography} from "@mui/material";
 import {useLocation, useNavigate} from "react-router-dom";
 import InputDateField from "./InputDateField";
+import {useSelector} from "react-redux";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -52,6 +53,8 @@ const modalStyle = {
 };
 
 const FindInfoField = () => {
+    const {localhost} = useSelector((store) => store);
+
     const navigate = useNavigate();
     const location = useLocation();
     const fieldValue = location.state.fieldValue;
@@ -104,9 +107,9 @@ const FindInfoField = () => {
         };
 
         if (value === 0) {
-            url = "http://localhost:9090" + "/find-mail";
+            url = localhost + "/find-mail";
         } else if (value === 1) {
-            url = "http://localhost:9090" + "/find-pw";
+            url = localhost + "/find-pw";
         }
         console.log(url.slice(url.lastIndexOf("/")))
         if (url.slice(url.lastIndexOf("/")) === "/find-mail") {

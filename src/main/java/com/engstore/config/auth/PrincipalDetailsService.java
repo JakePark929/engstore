@@ -1,7 +1,7 @@
 package com.engstore.config.auth;
 
 import com.engstore.domain.UserAccount;
-import com.engstore.repository.UserAccountRepository;
+import com.engstore.service.repository.UserAccountRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
