@@ -1,7 +1,6 @@
 import './App.css';
 import {Route, Routes, useLocation} from "react-router-dom";
 import Footer from "./component/Footer";
-import MainPage from "./pages/MainPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import SignupPage from "./pages/SignupPage";
 import SignupCompletePage from "./pages/SignupCompletePage";
@@ -13,6 +12,7 @@ import ModuleDocPage from "./pages/module/ModuleDocPage";
 import ModuleMainPage from "./pages/module/ModuleMainPage";
 import ModuleDwgDataPage from "./pages/module/ModuleDwgDataPage";
 import ModuleSheetDataPage from "./pages/module/ModuleSheetDataPage";
+import MainPage from "./pages/MainPage";
 
 function App() {
     const loc = useLocation();

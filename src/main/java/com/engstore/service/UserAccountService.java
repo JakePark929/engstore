@@ -1,7 +1,7 @@
 package com.engstore.service;
 
 import com.engstore.domain.UserAccount;
-import com.engstore.repository.UserAccountRepository;
+import com.engstore.service.repository.UserAccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,11 +34,12 @@ public class UserAccountService {
         return userAccountRepository.findByEmail(username);
     }
 
+    // 전화번호, 이름
     @Transactional
     public UserAccount findMail(UserAccount userAccount) {
-        String name = userAccount.getName();
-        String birth = userAccount.getBirth();
-        String phone1 = userAccount.getPhone1();
+        String name = userAccount.getName(); // 이름
+        String birth = userAccount.getBirth(); // 생년월일
+        String phone1 = userAccount.getPhone1(); // 전화번호
         return userAccountRepository.findByNameAndBirthAndPhone1(name, birth, phone1);
     }
 
@@ -51,7 +52,7 @@ public class UserAccountService {
 
         UserAccount userAccountEntity = userAccountRepository.findByEmailAndNameAndBirthAndPhone1(email, name, birth, phone1);
         if (userAccountEntity != null) {
-            String rawPassword = createKey();
+            String rawPassword = createPwKey();
             boolean sentEmail = emailSenderService.sendEmailWithNewPassword(email, rawPassword);
             if (sentEmail) {
                 System.out.println("초기화된 비밀번호: " + rawPassword);
@@ -63,25 +64,31 @@ public class UserAccountService {
         return false;
     }
 
-    private String createKey() {
+    private String createPwKey() {
         StringBuffer key = new StringBuffer();
         Random rnd = new Random();
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 8; i++) {
             int index = rnd.nextInt(3);
 
-            switch (index) {
-                case 0:
-                    key.append((char) ((rnd.nextInt(26)) + 97));
-                    break;
-                case 1:
-                    key.append((char) ((rnd.nextInt(26)) + 65));
-                    break;
-                case 2:
-                    key.append(rnd.nextInt(10));
-                    break;
+            if (i < 6) {
+                switch (index) {
+                    case 0:
+                        key.append((char) ((rnd.nextInt(26)) + 97));
+                        break;
+                    case 1:
+                        key.append((char) ((rnd.nextInt(26)) + 65));
+                        break;
+                    case 2:
+                        key.append(rnd.nextInt(10));
+                        break;
+                }
+            } else  {
+                int arr[] = {33, 64, 35, 36};
+                key.append((char) arr[(rnd.nextInt(4))]);
             }
         }
+
         return key.toString();
     }
 }

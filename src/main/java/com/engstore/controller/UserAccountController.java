@@ -47,6 +47,11 @@ public class UserAccountController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
+    /**
+     * 이메일 찾기 메소드
+     * 받는 정보:
+     * 주소:
+     */
     @CrossOrigin
     @PostMapping("/find-mail")
     @ResponseBody

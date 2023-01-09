@@ -1,5 +1,5 @@
 const initState = {
-    localhost: "http://52.78.147.129:9090",
+    localhost: "http://localhost:9090",
 }
 
 const reducer = (state = initState) => {
